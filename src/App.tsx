@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import SectionIndicator from './components/SectionIndicator';
 import { GridBackground } from './components/ui/grid-background';
 import ChatWidget from './components/ChatWidget';
+import CursorGlow from './components/ui/cursor-glow';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <CursorGlow />
       <ChatWidget />
     </ThemeProvider>
   );

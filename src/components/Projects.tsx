@@ -44,7 +44,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       variants={cardVariants}
-      className={`bg-bg-surface border ${isPlaceholder ? 'border-dashed border-bg-border/50' : 'border-bg-border hover:border-accent-green/50'} transition-colors overflow-hidden`}
+      className={`bg-bg-surface border ${isPlaceholder ? 'border-dashed border-bg-border/50' : 'border-bg-border animate-border'} transition-colors overflow-hidden group`}
       style={{ transitionDelay: `${0.1 * index}s` }}
     >
       {/* Gradient image placeholder */}

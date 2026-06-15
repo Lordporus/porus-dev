@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { useCountUp } from '../hooks/useCountUp';
 
 const stats = [
   { value: '3+', label: 'Products Shipped' },
@@ -18,6 +20,9 @@ const asciiArt = [
 ];
 
 export default function About() {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-100px' });
+
   return (
     <section className="py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -54,12 +59,9 @@ export default function About() {
             </p>
 
             {/* Inline stats */}
-            <div className="flex flex-wrap gap-x-8 gap-y-2 pt-4">
+            <div ref={statsRef} className="flex flex-wrap gap-x-8 gap-y-2 pt-4">
               {stats.map((stat) => (
-                <span key={stat.label} className="inline-flex items-baseline gap-1.5">
-                  <span className="font-display font-bold text-sm text-accent-green">[{stat.value}]</span>
-                  <span className="font-code text-xs text-text-muted">{stat.label}</span>
-                </span>
+                <AnimatedStat key={stat.label} stat={stat} start={statsInView} />
               ))}
             </div>
           </motion.div>
@@ -80,5 +82,15 @@ export default function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function AnimatedStat({ stat, start }: { stat: { value: string; label: string }; start: boolean }) {
+  const displayValue = useCountUp(stat.value, start);
+  return (
+    <span className="inline-flex items-baseline gap-1.5">
+      <span className="font-display font-bold text-sm text-accent-green">[{displayValue}]</span>
+      <span className="font-code text-xs text-text-muted">{stat.label}</span>
+    </span>
   );
 }

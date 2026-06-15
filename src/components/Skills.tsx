@@ -65,10 +65,11 @@ export default function Skills() {
                 {cat.skills.map((skill, skillIndex) => (
                   <motion.span
                     key={skill}
-                    className="font-code text-xs px-2.5 py-1.5 bg-bg-surface border border-accent-cyan/20 text-accent-cyan hover:border-accent-cyan hover:shadow-[0_0_10px_#00d4ff30] transition-all cursor-default"
+                    className="font-code text-xs px-2.5 py-1.5 bg-bg-surface border border-accent-cyan/20 text-accent-cyan hover:border-accent-cyan hover:shadow-[0_0_10px_#00d4ff30] transition-all cursor-default animate-float"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.03 * (catIndex * 4 + skillIndex), duration: 0.2 }}
+                    style={{ animationDelay: `${0.15 * (catIndex * 4 + skillIndex)}s` }}
                   >
                     {skill}
                   </motion.span>
